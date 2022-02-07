@@ -35,7 +35,17 @@ def main(wf):
             for g in result["entryGroups"]:
                 for e in g["entries"]:
                     wf.add_item(title=e["text"].replace("[","").replace("]",""),
-                                subtitle=e["context"],
+                                subtitle=e["context"] if "context" in e else "",
+                                arg=e["text"], valid=True,
+                                icon=ICON_WEB)
+        else:
+            result = r.json()["definitionsInDestLanguage"]["entryGroups"]
+            for g in result:
+                for e in g["entries"]:
+                    reg = re.search(r'\|[a-z]+', e["text"]).group(0)[1:]
+                    sub = re.search(r'\[.*\]', e["text"])
+                    wf.add_item(title=reg,
+                                subtitle=e["text"].replace(sub.group(0),reg),
                                 arg=e["text"], valid=True,
                                 icon=ICON_WEB)
     else:
