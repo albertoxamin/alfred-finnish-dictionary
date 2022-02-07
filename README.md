@@ -7,7 +7,7 @@
 
 ## Installation
 
-1. Download the latest release from the releases page. [link](https://github.com/albertoxamin/alfred-finnish-dictionary/releases/tag/stable)
+1. Download the latest release from the releases page. [link](https://github.com/albertoxamin/alfred-finnish-dictionary/releases)
 2. Open it!
 
 ## Screenshots
