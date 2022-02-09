@@ -1,3 +1,4 @@
+from cgitb import text
 import sys
 from time import sleep
 from workflow import Workflow, ICON_WEB, web
@@ -16,7 +17,7 @@ def main(wf):
     if len(wf.args):
         query = wf.args[0]
         query = make_url(query)
-        url = 'https://api.redfoxsanakirja.fi/redfox-api/api/basic/query/fin/eng/{}'.format(query)
+        url = 'https://api.redfoxsanakirja.fi/redfox-api/api/basic/query/{}/{}'.format(wf.args[1], query)
         log.debug(url)
         r = web.get(url)
 
@@ -30,20 +31,35 @@ def main(wf):
                                 arg=e["text"], valid=True,
                                 icon=ICON_WEB)
         elif r.json()["definitions"]["empty"] == False:
+            result = r.json()["definitions"]["entryGroups"]
             for g in result:
                 for e in g["entries"]:
-                    reg = re.search(r'\|[a-z]+', e["text"]).group(0)[1:]
-                    sub = re.search(r'\(.*?\)', e["text"])
-                    wf.add_item(title=reg,
-                                subtitle=e["text"].replace(sub.group(0),reg),
-                                arg="https://redfoxsanakirja.fi/fi/sanakirja/-/s/fin/eng/{}".format(query), valid=True,
-                                icon=ICON_WEB)
+                    try:
+                        reg = re.search(r'\|[a-z]+', e["text"]).group(0)[1:]
+                        sub = re.search(r'\(.*?\)', e["text"])
+                        wf.add_item(title=reg,
+                                    subtitle=e["text"].replace(sub.group(0),reg),
+                                    arg="https://redfoxsanakirja.fi/fi/sanakirja/-/s/{}/{}".format(wf.args[1], query), valid=True,
+                                    icon=ICON_WEB)
+                    except:
+                        wf.add_item(title=e["text"],
+                                    subtitle=e["text"],
+                                    arg="https://redfoxsanakirja.fi/fi/sanakirja/-/s/{}/{}".format(wf.args[1], query), valid=True,
+                                    icon=ICON_WEB)
         else:
             for s in r.json()["suggestion"]:
                 log.debug(s)
                 wf.add_item(title=s,
-                            arg="https://redfoxsanakirja.fi/fi/sanakirja/-/s/fin/eng/{}".format(s), valid=True,
+                            arg="https://redfoxsanakirja.fi/fi/sanakirja/-/s/{}/{}".format(wf.args[1], s), valid=True,
                             icon=ICON_WEB)
+        if r.json()["redfoxSecondaryTermbankTranslations"]["empty"] == False:
+            result = r.json()["redfoxSecondaryTermbankTranslations"]["entryGroups"]
+            for g in result:
+                for e in g["entries"]:
+                    wf.add_item(title=e["text"],
+                                subtitle=e["context"] if "context" in e else "",
+                                arg="https://redfoxsanakirja.fi/fi/sanakirja/-/s/{}/{}".format(wf.args[1], query), valid=True,
+                                icon=ICON_WEB)
     else:
         query = None
     wf.send_feedback()

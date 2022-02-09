@@ -2,8 +2,8 @@
 
 ## Usage
 
-* `finen` + word, search finnish word meanings
-* `enfin` + word, finds how to say a word in finnish
+* `fe` + word, search finnish word meanings
+* `ef` + word, finds how to say a word in finnish
 
 ## Installation
 

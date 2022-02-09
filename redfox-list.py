@@ -18,7 +18,7 @@ def main(wf):
         log.debug(query)
         query = make_url(query)
         if len(query) > 0:
-            url = 'https://api.redfoxsanakirja.fi/redfox-api/api/basic/autocomplete/fin/{}'.format(query)
+            url = 'https://api.redfoxsanakirja.fi/redfox-api/api/basic/autocomplete/{}/{}'.format(wf.args[1], query)
             log.debug(url)
             r = web.get(url)
             r.raise_for_status()

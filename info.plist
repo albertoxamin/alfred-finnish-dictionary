@@ -97,7 +97,7 @@
 				<key>runningsubtext</key>
 				<string>...</string>
 				<key>script</key>
-				<string>python redfox-tran.py "{query}"</string>
+				<string>python redfox-tran.py "{query}" "fin/eng"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -134,7 +134,7 @@
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>keyword</key>
-				<string>finen</string>
+				<string>fe</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -146,7 +146,7 @@
 				<key>runningsubtext</key>
 				<string>Vena sekkaa...</string>
 				<key>script</key>
-				<string>python redfox-list.py "{query}"</string>
+				<string>python redfox-list.py "{query}" "fin"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -202,7 +202,7 @@
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>keyword</key>
-				<string>enfin</string>
+				<string>ef</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -214,7 +214,7 @@
 				<key>runningsubtext</key>
 				<string>Vena sekkaa...</string>
 				<key>script</key>
-				<string>python redfox-list-enfin.py "{query}"</string>
+				<string>python redfox-list.py "{query}" "eng"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -261,7 +261,7 @@
 				<key>runningsubtext</key>
 				<string>...</string>
 				<key>script</key>
-				<string>python redfox-tran-enfin.py "{query}"</string>
+				<string>python redfox-tran.py "{query}" "eng/fin"</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -352,7 +352,7 @@
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>webaddress</key>
 	<string>https://xamin.it</string>
 </dict>
