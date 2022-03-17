@@ -1,4 +1,4 @@
-# alfred-finnish-dictionary
+# Alfred Finnish Dictionary 🎩🇫🇮
 
 ## Usage
 
